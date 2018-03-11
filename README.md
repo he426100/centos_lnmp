@@ -1,18 +1,18 @@
 # centos_lnmp
 
-docker volume create mysql
-docker container run -d --name mysql56 -p 3306:3306 --mount source=mysql,target=/var/lib/mysql --env MYSQL_ROOT_PASSWORD=123456 mysql:5.6
+	docker volume create mysql
+	docker container run -d --name mysql56 -p 3306:3306 --mount source=mysql,target=/var/lib/mysql --env MYSQL_ROOT_PASSWORD=123456 mysql:5.6
 
-docker volume create redis
-docker container run -d --name redis -p 6379:6379 --mount source=redis,target=/data redis
+	docker volume create redis
+	docker container run -d --name redis -p 6379:6379 --mount source=redis,target=/data redis
 
-docker volume create www
-docker container run -dit --rm --privileged --name lnmp1.5 -p 80:80 -p 63700:22 --mount source=www,target=/data he426100/lnmp:1.5 /usr/sbin/init
+	docker volume create www
+	docker container run -dit --rm --privileged --name lnmp1.5 -p 80:80 -p 63700:22 --mount source=www,target=/data he426100/lnmp:1.5 /usr/sbin/init
 
-docker container exec -it lnmp1.5 /bin/bash
-yum install -y openssh-server
-systemctl start sshd
-systemctl status sshd
+	docker container exec -it lnmp1.5 /bin/bash
+	yum install -y openssh-server
+	systemctl start sshd
+	systemctl status sshd
 
 1、加上 -i -t 就可以解决容器无法启动的问题
 2、加上 --privileged 和 /usr/sbin/init 可以解决centos镜像不能使用systemctl的问题（慎用，会造成严重问题，详见 https://github.com/boot2docker/boot2docker/issues/1301）
