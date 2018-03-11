@@ -15,8 +15,11 @@
 	systemctl status sshd
 
 1、加上 -i -t 就可以解决容器无法启动的问题
+
 2、加上 --privileged 和 /usr/sbin/init 可以解决centos镜像不能使用systemctl的问题（慎用，会造成严重问题，详见 https://github.com/boot2docker/boot2docker/issues/1301）
+
 3、使用docker volume可以解决容器删除后文件也消失的问题（妈妈再也不应担心我总是在重复部署代码了）
+
 4、用docker创建mysql服务和redis服务实在太简单，所以lnmp镜像只要nginx+php-fpm就够了
-5、没入门的小学生制作的简单粗暴版Dockerfile ：  https://github.com/he426100/centos_lnmp
-6、这东西的价值在于可以轻易地创建、复制、恢复环境，让日常使用回归日常，让开发的集中到开发，免于安装一堆东西，不敢重装系统
+
+5、这东西的价值在于可以轻易地创建、复制、恢复环境，让日常使用回归日常，让开发的集中到开发，免于安装一堆东西，不敢重装系统
