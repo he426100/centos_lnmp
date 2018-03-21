@@ -1,13 +1,15 @@
 # centos_lnmp
 
+	docker network create -d bridge lnmp
+	
 	docker volume create mysql
-	docker container run -d --name mysql56 -p 3306:3306 --mount source=mysql,target=/var/lib/mysql --env MYSQL_ROOT_PASSWORD=123456 mysql:5.6
+	docker container run -d --name mysql56 -p 3306:3306 --mount source=mysql,target=/var/lib/mysql --env MYSQL_ROOT_PASSWORD=123456 --network lnmp mysql:5.6
 
 	docker volume create redis
-	docker container run -d --name redis -p 6379:6379 --mount source=redis,target=/data redis
+	docker container run -d --name redis -p 6379:6379 --mount source=redis,target=/data --network lnmp redis
 
 	docker volume create www
-	docker container run -dit --rm --privileged --name lnmp1.5 -p 80:80 -p 63700:22 --mount source=www,target=/data he426100/lnmp:1.5 /usr/sbin/init
+	docker container run -dit --rm --privileged --name lnmp1.5 -p 80:80 -p 63700:22 --mount source=www,target=/data --network lnmp he426100/lnmp:1.5 /usr/sbin/init
 
 	docker container exec -it lnmp1.5 /bin/bash
 	yum install -y openssh-server
