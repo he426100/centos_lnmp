@@ -18,7 +18,7 @@
 
 1、加上 -i -t 就可以解决容器无法启动的问题
 
-2、加上 --privileged 和 /usr/sbin/init 可以解决centos镜像不能使用systemctl的问题（慎用，会造成严重问题，详见 https://github.com/boot2docker/boot2docker/issues/1301）
+2、加上 --privileged 和 /usr/sbin/init 可以解决centos镜像不能使用systemctl的问题（慎用，会造成严重问题，详见 https://github.com/boot2docker/boot2docker/issues/1301
 
 3、使用docker volume可以解决容器删除后文件也消失的问题（妈妈再也不应担心我总是在重复部署代码了）
 
